@@ -29,12 +29,14 @@ const io = new Server(server)
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
-// app.use(sessions({
-//     //store:
-//     secret: "******",
-//     resave:true,
-//     saveUninitialized:true
-// }))
+app.use(sessions({
+    store: new fileStore({
+        path:''
+    }),
+    secret: "******",
+    resave:true,
+    saveUninitialized:true
+}))
 
 app.use(express.static(path.join(__dirname,'/public')));
 
